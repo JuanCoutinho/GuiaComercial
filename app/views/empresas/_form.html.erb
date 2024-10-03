@@ -1,0 +1,39 @@
+<section class="mx-auto container max-w-md px-4">
+  <%= form_with(model: empresa, local: true) do |form| %>
+    <% if empresa.errors.any? %>
+      <div class="bg-red-100 border border-red-400 text-red-700 p-4 rounded-lg shadow-md mb-6">
+        <h2 class="font-semibold"><%= pluralize(empresa.errors.count, "error") %> prohibited this empresa from being saved:</h2>
+        <ul class="list-disc list-inside mt-2">
+          <% empresa.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="mb-6">
+      <%= form.label :imagem, class: "block text-lg font-medium text-gray-800 mb-2" %>
+      <%= form.file_field :imagem, class: "mt-1 block w-full border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2" %>
+    </div>
+
+    <div class="mb-6">
+      <%= form.label :nome, class: "block text-lg font-medium text-gray-800 mb-2" %>
+      <%= form.text_field :nome, class: "mt-1 block w-full border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2" %>
+    </div>
+
+    <div class="mb-6">
+      <%= form.label :descricao, class: "block text-lg font-medium text-gray-800 mb-2" %>
+      <%= form.text_area :descricao, class: "mt-1 block w-full border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2" %>
+    </div>
+
+    <div class="mb-4">
+    <%= form.label :whatsapp, "Número do WhatsApp" %>
+    <%= form.text_field :whatsapp, class: "border rounded py-2 px-4" %>
+    </div>
+
+
+    <div>
+      <%= form.submit "Salvar", class: "w-full bg-blue-600 text-white py-3 rounded-lg shadow hover:bg-blue-700 transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+    </div>
+  <% end %>
+</section>

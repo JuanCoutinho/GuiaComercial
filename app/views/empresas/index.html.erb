@@ -1,0 +1,31 @@
+<p class="text-green-600"><%= notice %></p>
+
+<h1 class="text-center text-3xl font-bold mb-6">Empresas</h1>
+
+<% if user_signed_in? %>
+  <div class="text-center mb-4">
+    <%= link_to "Nova Empresa", new_empresa_path, class: 'bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-200' %>
+  </div>
+<% end %>
+<br>
+<div class="text-center mb-4">
+  <%= form_with url: empresas_path, method: :get, local: true, class: "flex justify-center" do %>
+    <%= text_field_tag :search, params[:search], placeholder: "Pesquisar empresas...", class: "border rounded py-2 px-4" %>
+    <%= submit_tag "Pesquisar", class: "bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-200" %>
+  <% end %>
+</div>
+
+
+<div id="empresas" class="flex flex-wrap justify-center gap-4">
+  <% @empresas.each do |empresa| %>
+    <div class="bg-white rounded-lg shadow-lg w-64 md:w-80 transition-transform transform hover:scale-105">
+      <%= render empresa %>
+      <% if user_signed_in? %>
+        <p class="text-center mt-4">
+          <%= link_to "Ver Empresa", empresa, class: 'text-blue-500 hover:underline p-4' %>
+        </p>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
